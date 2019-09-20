@@ -19,7 +19,7 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="uwosh.snippets"
+      title="uwosh.snippets default"
       directory="profiles/default"
       description="Installs the uwosh.snippets package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
@@ -27,7 +27,7 @@
 
     <genericsetup:registerProfile
       name="uninstall"
-      title="uwosh.snippets"
+      title="uwosh.snippets uninstall"
       directory="profiles/uninstall"
       description="Removes the uwosh.snippets package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
