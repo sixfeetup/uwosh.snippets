@@ -44,7 +44,8 @@ setup(name='uwosh.snippets',
     	  'plone.directives.form',
           'plone.api',
           'lxml',
-          'z3c.unconfigure',
+          'z3c.unconfigure>=1.1',
+          'zope.configuration>=3.8.1',
           'plone.app.linkintegrity'
           # -*- Extra requirements: -*-
       ],
