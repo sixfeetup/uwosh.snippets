@@ -34,7 +34,7 @@ class SnippetTransform(object):
         return result
 
     def transformIterable(self, result, encoding):
-        if self.request['PATH_INFO'].endswith('edit'):
+        if self.request['PATH_INFO'].endswith('/edit'):
             return result
 
         contentType = self.request.response.getHeader('Content-Type')
