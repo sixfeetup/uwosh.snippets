@@ -89,8 +89,10 @@ def checkSnippetReferences(obj):
 
     broken = []
     for link in getIncomingLinks(obj):
+        if not link.from_object:
+            continue
         for text in findTextAreas(link.from_object):
-            if not text:
+            if not text or not link.from_object:
                 continue
 
             dom = fromstring(text)
