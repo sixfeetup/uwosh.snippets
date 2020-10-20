@@ -32,6 +32,15 @@
       '<input class="pat-relateditems" type="text"' +
             " data-pat-relateditems='<%= reOptions %>' />" +
     '</div>' +
+    '<div class="form-group snippets-iframe">' +
+      '<p>If snippet should display in an iframe, check this box, then specify a width and height</p>' +
+      '<input type="checkbox" id="display-iframe" value="iframe" />' +
+      '<label>Display in iframe?</label><br />' +
+      '<label>iframe width:</label>' +
+      '<input type="text" id="iframe-width" value="100%"/>' +
+      '<label>iframe height:</label>' +
+      '<input type="text" id="iframe-height" value="300px"/>' +
+    '</div>' +
   '</div>' +
   '<div class="form-group snippets-section" style="display:none">' +
     '<label>Select section</label>' +
@@ -147,6 +156,9 @@
             }
 
             var data = re.$el.select2('data');
+            var in_iframe = $('#display-iframe').is(':checked');
+            var iframe_width = $('#iframe-width').val();
+            var iframe_height = $('#iframe-height').val();
 
             if(data && data.length > 0){
               utils.loading.show();
@@ -164,7 +176,10 @@
                   'data-type': 'snippet_tag',
                   contenteditable: false,
                   'data-snippet-id': data[0].UID,
-                  'data-header': header
+                  'data-header': header,
+                  'data-iframe': in_iframe,
+                  'data-iframe-width': iframe_width,
+                  'data-iframe-height': iframe_height,
                 };
                 if($node){
                   $node.attr(attrs);

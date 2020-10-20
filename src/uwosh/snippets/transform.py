@@ -33,6 +33,18 @@ class SnippetTransform(object):
     def transformUnicode(self, result, encoding):
         return result
 
+    def display_in_iframe(self, el, ob):
+        iframe = etree.Element('iframe')
+        iframe.attrib.update({
+            'src': ob.absolute_url() + '/raw',
+            'title': ob.Title(),
+            'width': el.attrib.get('data-iframe-width', '100%'),
+            'height': el.attrib.get('data-iframe-height', '300px'),
+        })
+        parent = el.getparent()
+        idx = parent.index(el)
+        parent[idx] = iframe
+
     def transformIterable(self, result, encoding):
         if self.request['PATH_INFO'].endswith('/edit'):
             return result
@@ -82,6 +94,10 @@ class SnippetTransform(object):
                 val = data['html']
                 if header:
                     val = get_header_from_text(val, header)
+
+                if el.attrib.get('data-iframe') == 'true':
+                    self.display_in_iframe(el, ob)
+                    continue
 
                 snippet_container = etree.Element('div')
 
